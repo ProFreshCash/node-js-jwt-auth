@@ -59,4 +59,24 @@ module.exports = function(app) {
   
   })
 
+  app.post('/uj_anyag_fel', (req, res) => {
+    var mysql = require('mysql')
+    var connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'anyagok'
+    })
+    connection.connect()
+
+    connection.query('INSERT INTO anyagok VAlUES (NULL,"'+req.body.nev+'","'+req.body.ar+'","'+req.body.szin+'","'+req.body.meret+'","'+req.body.anyag+'")', function (err, rows, fields) {
+      if (err) throw err
+    
+      res.send("Sikeres feltöltés történt");
+    })
+    
+    connection.end()
+
+  })
+
 };

@@ -69,7 +69,7 @@ module.exports = function(app) {
     })
     connection.connect()
 
-    connection.query('INSERT INTO anyagok VAlUES (NULL,"'+req.body.nev+'","'+req.body.ar+'","'+req.body.szin+'","'+req.body.meret+'","'+req.body.anyag+'")', function (err, rows, fields) {
+    connection.query('INSERT INTO anyagok VAlUES (NULL,"'+req.body.bev1+'","'+req.body.bev2+'","'+req.body.bev3+'","'+req.body.bev4+'","'+req.body.bev5+'","'+req.body.bev6+'")', function (err, rows, fields) {
       if (err) throw err
     
       res.send("Sikeres feltöltés történt");

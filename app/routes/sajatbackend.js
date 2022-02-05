@@ -1,5 +1,6 @@
 const { authJwt } = require("../middleware");
 const controller = require("../controllers/user.controller");
+const fileupload = require("express-fileupload");
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -69,7 +70,7 @@ module.exports = function(app) {
     })
     connection.connect()
 
-    connection.query('INSERT INTO anyagok VAlUES (NULL,"'+req.body.bev1+'","'+req.body.bev2+'","'+req.body.bev3+'","'+req.body.bev4+'","'+req.body.bev5+'","'+req.body.bev6+'")', function (err, rows, fields) {
+    connection.query('INSERT INTO anyag VAlUES (NULL,"'+req.body.bev1+'","'+req.body.bev2+'","'+req.body.bev3+'","'+req.body.bev4+'","'+req.body.bev5+'","'+req.body.bev6+'")', function (err, rows, fields) {
       if (err) throw err
     
       res.send("Sikeres feltöltés történt");
@@ -78,5 +79,18 @@ module.exports = function(app) {
     connection.end()
 
   })
+  app.use(fileupload());
+  app.post("/upload", (req, res) => {
+    const newpath = "./kepek/";
+    const file = req.files.file;
+    const filename = file.name;
+  
+    file.mv(`${newpath}${filename}`, (err) => {
+      if (err) {
+        return res.status(500).send({ message: "File upload failed", code: 200 });
+      }
+        return res.status(200).send({ message: "File Uploaded", code: 200 });
+    });
+  });
 
 };

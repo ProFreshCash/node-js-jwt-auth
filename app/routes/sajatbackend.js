@@ -11,19 +11,19 @@ module.exports = function(app) {
     next();
   });
   //saját backend 
-  app.get('/anyagok', (req, res) => {
+  app.get('/osszeshos', (req, res) => {
 
     var mysql = require('mysql')
     var connection = mysql.createConnection({
       host: 'localhost',
       user: 'root',
       password: '',
-      database: 'anyagok'
+      database: 'mlbb'
     })
     
     connection.connect()
     
-    connection.query('SELECT * from anyag', function (err, rows, fields) {
+    connection.query('SELECT `hos_nev`,`kep`,laning.role FROM `heros` INNER JOIN laning ON laning.id=heros.role_id ', function (err, rows, fields) {
       if (err) throw err
     
       console.log(rows)
@@ -31,23 +31,25 @@ module.exports = function(app) {
     })
     
     connection.end()
-
+  
+  
+  
   })
 
 
-  app.post('/anyagtorles', (req, res) => {
+  app.post('/osszeshosboltorles', (req, res) => {
 
     var mysql = require('mysql')
     var connection = mysql.createConnection({
       host: 'localhost',
       user: 'root',
       password: '',
-      database: 'anyagok'
+      database: 'mlbb'
     })
     
     connection.connect()
     
-    connection.query('DELETE FROM `anyag` WHERE `anyag`.`anyag_id` = '+req.body.bevitel1, function (err, rows, fields) {
+    connection.query('DELETE FROM `heros` WHERE `heros`.`hos_id` = '+req.body.bevitel1, function (err, rows, fields) {
       if (err) throw err
     
       console.log("Az adat törölve lett!")
@@ -60,17 +62,17 @@ module.exports = function(app) {
   
   })
 
-  app.post('/uj_anyag_fel', (req, res) => {
+  app.post('/uj_hos_fel', (req, res) => {
     var mysql = require('mysql')
     var connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'anyagok'
+        database: 'mlbb'
     })
     connection.connect()
 
-    connection.query('INSERT INTO anyag VAlUES (NULL,"'+req.body.bev1+'","'+req.body.bev2+'","'+req.body.bev3+'","'+req.body.bev4+'","'+req.body.bev5+'","'+req.body.bev6+'")', function (err, rows, fields) {
+    connection.query('INSERT INTO heros VAlUES (NULL,"'+req.body.bev1+'","'+req.body.bev2+'","'+req.body.bev3+'","'+req.body.bev4+'","'+req.body.bev5+'")', function (err, rows, fields) {
       if (err) throw err
     
       res.send("Sikeres feltöltés történt");

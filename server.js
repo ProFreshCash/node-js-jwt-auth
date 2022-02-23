@@ -7,7 +7,8 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions))
-app.use(express.static("kepek"));
+app.use(express.static("hoskepek"));
+app.use(express.static("itemkepek"));
 
 // parse requests of content-type - application/json
 app.use(express.json());

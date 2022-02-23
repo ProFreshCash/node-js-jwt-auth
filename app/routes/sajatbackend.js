@@ -11,19 +11,19 @@ module.exports = function(app) {
     next();
   });
   //saját backend 
-  app.get('/osszeshos', (req, res) => {
+  app.get('/anyagok', (req, res) => {
 
     var mysql = require('mysql')
     var connection = mysql.createConnection({
       host: 'localhost',
       user: 'root',
       password: '',
-      database: 'mlbb'
+      database: 'anyagok'
     })
     
     connection.connect()
     
-    connection.query('SELECT `hos_nev`,`kep`,laning.role FROM `heros` LEFT JOIN laning ON laning.id=heros.role_id ', function (err, rows, fields) {
+    connection.query('SELECT * from anyag', function (err, rows, fields) {
       if (err) throw err
     
       console.log(rows)
@@ -31,51 +31,23 @@ module.exports = function(app) {
     })
     
     connection.end()
-  
-  
-  
+
   })
 
 
-  app.get('/osszesitem', (req, res) => {
+  app.post('/anyagtorles', (req, res) => {
 
     var mysql = require('mysql')
     var connection = mysql.createConnection({
       host: 'localhost',
       user: 'root',
       password: '',
-      database: 'mlbb'
+      database: 'anyagok'
     })
     
     connection.connect()
     
-    connection.query('SELECT `item_nev`,`kep`,`ar`,`leiras`,items_type.item_fajta FROM `items` INNER JOIN items_type ON items_type.id = items.id', function (err, rows, fields) {
-      if (err) throw err
-    
-      console.log(rows)
-      res.send(rows)
-    })
-    
-    connection.end()
-  
-  
-  
-  })
-
-
-  app.post('/osszeshosboltorles', (req, res) => {
-
-    var mysql = require('mysql')
-    var connection = mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: '',
-      database: 'mlbb'
-    })
-    
-    connection.connect()
-    
-    connection.query('DELETE FROM `heros` WHERE `heros`.`id` = '+req.body.bevitel1, function (err, rows, fields) {
+    connection.query('DELETE FROM `anyag` WHERE `anyag`.`anyag_id` = '+req.body.bevitel1, function (err, rows, fields) {
       if (err) throw err
     
       console.log("Az adat törölve lett!")
@@ -88,17 +60,17 @@ module.exports = function(app) {
   
   })
 
-  app.post('/uj_hos_fel', (req, res) => {
+  app.post('/uj_anyag_fel', (req, res) => {
     var mysql = require('mysql')
     var connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'mlbb'
+        database: 'anyagok'
     })
     connection.connect()
 
-    connection.query('INSERT INTO heros VAlUES (NULL,"'+req.body.bev2+'","'+req.body.bev3+'","'+req.body.bev4+'","'+req.body.bev5+'")', function (err, rows, fields) {
+    connection.query('INSERT INTO anyag VAlUES (NULL,"'+req.body.bev1+'","'+req.body.bev2+'","'+req.body.bev3+'","'+req.body.bev4+'","'+req.body.bev5+'","'+req.body.bev6+'")', function (err, rows, fields) {
       if (err) throw err
     
       res.send("Sikeres feltöltés történt");

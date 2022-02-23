@@ -1,0 +1,19 @@
+anyag fajták
+fák
+csempék
+mixer beton
+téglák
+
+anyagok
+neve
+leírása
+mérete
+ár/mennyiség
+kép
+fajtája
+
+rendelések
+rendelő neve
+rendelt termék fajtája
+rendelt termék neve
+mennyisége

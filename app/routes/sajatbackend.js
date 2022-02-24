@@ -23,7 +23,7 @@ module.exports = function(app) {
     
     connection.connect()
     
-    connection.query('SELECT `anyag_neve`, `anyag_leiras`, `anyag_merete`, `anyag_ar`, `anyag_kep`, anyag_fajtak.anyag_fajtaja FROM `anyag` INNER JOIN anyag_fajtak ON anyag_fajtak.anyag_fajta_id = anyag.anyag_fajtaja', function (err, rows, fields) {
+    connection.query('SELECT anyag_id, `anyag_neve`, `anyag_leiras`,`anyag_fajtaja`,`anyag_merete`,`anyag_kep` FROM `anyag`', function (err, rows, fields) {
       if (err) throw err
     
       console.log(rows)
@@ -47,7 +47,7 @@ module.exports = function(app) {
     
     connection.connect()
     
-    connection.query('DELETE FROM `anyag` WHERE `anyag`.`anyag_id` = '+req.body.bevitel1, function (err, rows, fields) {
+    connection.query('DELETE FROM anyag WHERE anyag_id = '+req.body.bevitel1, function (err, rows, fields) {
       if (err) throw err
     
       console.log("Az adat törölve lett!")

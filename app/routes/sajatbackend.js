@@ -46,7 +46,7 @@ module.exports = function(app) {
     
     connection.connect()
     
-    connection.query('SELECT `rendelo_neve`, `rendelt_termek_fajtaja`, `rendelt_termek_neve`, `rendeles_mennyisege` FROM `rendeles`', function (err, rows, fields) {
+    connection.query('SELECT rendeles_id, `rendelo_neve`, `rendelt_termek_fajtaja`, `rendelt_termek_neve`, `rendeles_mennyisege` FROM `rendeles`', function (err, rows, fields) {
       if (err) throw err
     
       console.log(rows)
@@ -82,6 +82,31 @@ module.exports = function(app) {
   
   })
 
+  app.post('/allapot_valtoztat', (req, res) => {
+
+    var mysql = require('mysql')
+    var connection = mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'anyagok'
+    })
+    
+    connection.connect()
+    
+    connection.query('UPDATE rendeles SET allapot= 1 WHERE rendeles_id='+req.body.bev1, function (err, rows, fields) {
+      if (err) throw err
+    
+      console.log("Az adat törölve lett!")
+      res.send("Az adat törölve lett!")
+    })
+    
+    connection.end()
+
+
+  
+  })
+
   app.post('/uj_anyag_fel', (req, res) => {
     var mysql = require('mysql')
     var connection = mysql.createConnection({
@@ -101,6 +126,27 @@ module.exports = function(app) {
     connection.end()
 
   })
+
+  app.post('/uj_rendeles_fel', (req, res) => {
+    var mysql = require('mysql')
+    var connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'anyagok'
+    })
+    connection.connect()
+
+    connection.query('INSERT INTO rendeles VAlUES (NULL,"'+req.body.bev1+'","'+req.body.bev2+'","'+req.body.bev3+'","'+req.body.bev4+'", 0)', function (err, rows, fields) {
+      if (err) throw err
+    
+      res.send("Rendelés sikeresen leadva!");
+    })
+    
+    connection.end()
+
+  })
+
   app.use(fileupload());
   app.post("/upload", (req, res) => {
     const newpath = "./kepek/";

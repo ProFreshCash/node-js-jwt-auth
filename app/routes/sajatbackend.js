@@ -34,6 +34,28 @@ module.exports = function(app) {
 
   })
 
+  app.get('/rendelesek', (req, res) => {
+
+    var mysql = require('mysql')
+    var connection = mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'anyagok'
+    })
+    
+    connection.connect()
+    
+    connection.query('SELECT `rendelo_neve`, `rendelt_termek_fajtaja`, `rendelt_termek_neve`, `rendeles_mennyisege` FROM `rendeles`', function (err, rows, fields) {
+      if (err) throw err
+    
+      console.log(rows)
+      res.send(rows)
+    })
+    
+    connection.end()
+
+  })
 
   app.post('/anyagtorles', (req, res) => {
 

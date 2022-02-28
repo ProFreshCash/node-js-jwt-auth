@@ -82,7 +82,7 @@ module.exports = function(app) {
   
   })
 
-  app.post('/allapot_valtoztat', (req, res) => {
+  app.post('/allapot_valtoztat_oke', (req, res) => {
 
     var mysql = require('mysql')
     var connection = mysql.createConnection({
@@ -95,6 +95,31 @@ module.exports = function(app) {
     connection.connect()
     
     connection.query('UPDATE rendeles SET allapot= 1 WHERE rendeles_id='+req.body.bev1, function (err, rows, fields) {
+      if (err) throw err
+    
+      console.log("Az adat törölve lett!")
+      res.send("Az adat törölve lett!")
+    })
+    
+    connection.end()
+
+
+  
+  })
+
+  app.post('/allapot_valtoztat_nemoke', (req, res) => {
+
+    var mysql = require('mysql')
+    var connection = mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'anyagok'
+    })
+    
+    connection.connect()
+    
+    connection.query('UPDATE rendeles SET allapot= 0 WHERE rendeles_id='+req.body.bev1, function (err, rows, fields) {
       if (err) throw err
     
       console.log("Az adat törölve lett!")

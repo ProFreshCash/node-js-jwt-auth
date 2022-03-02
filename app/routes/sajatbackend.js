@@ -46,7 +46,7 @@ module.exports = function(app) {
     
     connection.connect()
     
-    connection.query('SELECT rendeles_id, `rendelo_neve`, `rendelt_termek_fajtaja`, `rendelt_termek_neve`, `rendeles_mennyisege` FROM `rendeles`', function (err, rows, fields) {
+    connection.query('SELECT * FROM `rendeles`', function (err, rows, fields) {
       if (err) throw err
     
       console.log(rows)
@@ -119,7 +119,7 @@ module.exports = function(app) {
     
     connection.connect()
     
-    connection.query('UPDATE rendeles SET allapot= 0 WHERE rendeles_id='+req.body.bev1, function (err, rows, fields) {
+    connection.query('UPDATE rendeles SET allapot= 2 WHERE rendeles_id='+req.body.bev1, function (err, rows, fields) {
       if (err) throw err
     
       console.log("Az adat törölve lett!")

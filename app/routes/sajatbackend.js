@@ -11,6 +11,57 @@ module.exports = function(app) {
     next();
   });
   //saját backend 
+  
+  app.get('/anyagnevek', (req, res) => {
+
+    var mysql = require('mysql')
+    var connection = mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'anyagok'
+    })
+    
+    connection.connect()
+    
+    connection.query('SELECT `anyag_id`,`anyag_neve` from anyag', function (err, rows, fields) {
+      if (err) throw err
+    
+      console.log(rows)
+      res.send(rows)
+    })
+    
+    connection.end()
+
+
+  
+  })
+
+  app.get('/fajtak', (req, res) => {
+
+    var mysql = require('mysql')
+    var connection = mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'anyagok'
+    })
+    
+    connection.connect()
+    
+    connection.query('SELECT * from anyag_fajtak', function (err, rows, fields) {
+      if (err) throw err
+    
+      console.log(rows)
+      res.send(rows)
+    })
+    
+    connection.end()
+
+
+  
+  })
+
   app.get('/anyagok', (req, res) => {
 
     var mysql = require('mysql')

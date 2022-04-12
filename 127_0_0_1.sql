@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Feb 13. 16:10
+-- Létrehozás ideje: 2022. Ápr 12. 23:44
 -- Kiszolgáló verziója: 10.4.14-MariaDB
 -- PHP verzió: 7.4.10
 
@@ -18,214 +18,257 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `mlbb`
+-- Adatbázis: `anyagok`
 --
-CREATE DATABASE IF NOT EXISTS `mlbb` DEFAULT CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
-USE `mlbb`;
+CREATE DATABASE IF NOT EXISTS `anyagok` DEFAULT CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
+USE `anyagok`;
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `heros`
+-- Tábla szerkezet ehhez a táblához `anyag`
 --
 
-CREATE TABLE `heros` (
-  `id` int(11) NOT NULL,
-  `hos_id` int(11) NOT NULL,
-  `hos_nev` text COLLATE utf8_hungarian_ci NOT NULL,
-  `role_id` int(11) NOT NULL,
-  `hos_leiras` text COLLATE utf8_hungarian_ci NOT NULL,
-  `kep` varchar(255) COLLATE utf8_hungarian_ci NOT NULL
+CREATE TABLE `anyag` (
+  `anyag_id` int(11) NOT NULL,
+  `anyag_neve` varchar(100) COLLATE utf8_hungarian_ci NOT NULL,
+  `anyag_leiras` text COLLATE utf8_hungarian_ci NOT NULL,
+  `anyag_fajtaja` int(11) NOT NULL,
+  `anyag_merete` text COLLATE utf8_hungarian_ci NOT NULL,
+  `anyag_ar` int(11) NOT NULL,
+  `anyag_kep` varchar(255) COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `heros`
+-- A tábla adatainak kiíratása `anyag`
 --
 
-INSERT INTO `heros` (`id`, `hos_id`, `hos_nev`, `role_id`, `hos_leiras`, `kep`) VALUES
-(1, 1, 'Franco', 1, '', 'franco.jpg'),
-(2, 2, 'Minotaur', 1, '', 'minotaur.jpg'),
-(3, 3, 'Tigreal', 1, '', 'tigreal.jpg'),
-(4, 4, 'Johnson', 1, '', 'johnson.jpg'),
-(5, 5, 'Lolita', 1, '', 'lolita.jpg'),
-(6, 6, 'Chou', 2, '', 'chou.jpg'),
-(7, 7, 'Paquito', 2, '', 'paquito.jpg'),
-(8, 8, 'Badang', 2, '', 'badang.jpg'),
-(9, 9, 'Lapu Lapu', 2, '', 'lapu.jpg'),
-(10, 10, 'Ruby', 2, '', 'ruby.jpg'),
-(11, 11, 'Aamon', 3, '', 'aamon.jpg'),
-(12, 12, 'Gusion', 3, '', 'gusion.jpg'),
-(13, 13, 'Fanny', 3, '', 'fanny.jpg'),
-(14, 14, 'Benedetta', 3, '', 'benedetta.jpg'),
-(15, 15, 'Hayabusa', 3, '', 'hayabusa.jpg'),
-(16, 16, 'Kagura', 4, '', 'kagura.jpg'),
-(17, 17, 'Cyclops', 4, '', 'cyclops.jpg'),
-(18, 18, 'Pharsa', 4, '', 'pharsa.jpg'),
-(19, 19, 'Odette', 4, '', 'odette.jpg'),
-(20, 20, 'Vale', 4, '', 'vale.jpg'),
-(21, 21, 'Beatrix', 5, '', 'beatrix.jpg'),
-(22, 22, 'Hanabi', 5, '', 'hanabi.jpg'),
-(23, 23, 'Lesley', 5, '', 'lesley.jpg'),
-(24, 24, 'Popol és Kupa', 5, '', 'popol.jpg'),
-(25, 25, 'Granger', 5, '', 'granger.jpg'),
-(26, 26, 'Angela', 6, '', 'angela.jpg'),
-(27, 27, 'Estes', 6, '', 'estes.jpg'),
-(28, 28, 'Floryn', 6, '', 'floryn.jpg'),
-(29, 29, 'Diggie', 6, '', 'diggie.jpg'),
-(30, 30, 'Rafaela', 6, '', 'rafaela.jpg'),
-(31, 31, 'Ling', 3, '', 'ling.jpg');
+INSERT INTO `anyag` (`anyag_id`, `anyag_neve`, `anyag_leiras`, `anyag_fajtaja`, `anyag_merete`, `anyag_ar`, `anyag_kep`) VALUES
+(1, 'Gerenda', 'Lucfenyőből\r\nFűrészelt\r\nNedvességtartalma 18% +/-2% PEFC-tanúsítvány\r\n\r\nA gerenda széles körű felhasználást tesz lehetővé minden olyan munkához, ami minőségi, stabil faanyagot igényel. Natúr felületű, amelynek kezelése a felhasználást követően ajánlott.\r\n\r\nEttől eltérő hosszméretek külön megállapodás szerint. ', 1, '10x15x500 cm', 15000, 'gerenda.jpg'),
+(2, 'Léc', 'Szlovák importból származó légszáraz, egyenes vágású, méretpontos Bramac léc hibátlan minőségben.\r\n\r\nSzármazása: •Északi termőhely (Komi, Ural régió) \r\n•Közép-európai termőhely (Magyarország, Szlovákia, Románia, Ukrajna)\r\n\r\nElőnyök:\r\n•Természetes alapanyag, felhasználása környezetkímélő \r\n•Dekoratív, esztétikus, környezetének kellemes hangulatot ad \r\n•Könnyen megmunkálható \r\n•Kemény \r\n•Víznek kitett helyen is jól felhasználható \r\n•Káros anyag kibocsátás mentes\r\n•Északi eredet esetén kiemelkedően kedvező struktúra, kedvező mechanikai - fizikai jellemzők\r\n', 1, '5x5x400 cm', 2400, 'léc.jpg'),
+(3, 'Deszka', 'A gyalult deszka olyan faanyag, ami négy oldalán meg van gyalulva (még az élek is). A gyalult deszka kiválóan alkalmas paraszt mennyezetnek, párkánynak, kerítésnek, homlokzatokhoz, de akár asztalokhoz, vagy székekhez is. A gyalult deszka kültéren való felhasználásakor érdemes a felületet favédőszerrel kezelni, a fa megóvása érdekében. A nálunk kapható gyalult deszka termékeket minden esetben válogatott faanyagból készülnek.  Erős, szép szálú és univerzális felhasználású fenyő deszka.', 1, '2,5x15x600 cm', 4500, 'deszka.jpg'),
+(4, 'Putnoki kisméretű tömör tégla', 'Nagyszilárdságú, kisméretű tömör tégla.\r\n\r\nAlkalmazási előnyök: \r\n\r\n•Kiváló nyomószilárdság, 40 N/mm2 \r\n\r\n•Ideális kifejezetten nagy teherigénybevételű oszlopokhoz, falakhoz\r\n\r\n•Hagyományos falazási technológia\r\n\r\n•Ideális kiegészítő szerkezetekhez\r\n\r\n•Nem éghető (A1)\r\n\r\nAlkalmazható kötőanyag: hagyományos falazóhabarcs.\r\nKiegészítő falszerkezetek építésére, vakolva időjárásálló\r\n, kerámia tömör tégla\r\n', 4, '6,5x12x25 cm', 150, 'kistomtegla.jpg'),
+(5, 'B 30-as blokktégla', 'Fokozott hőtechnikai követelmények nélküli hagyományos falazótégla. Külső és belső teherhordó falak építésére, 30 cm-es falvastagsággal építve alkalmazható.\r\n\r\nNyomószilárdság (átlag érték):	14 N/mm2\r\n\r\nCsomagolás:	168 db/raklap\r\n\r\nAnyagszükséglet:	35 db/m2, 116 db/m3', 4, '30x17,5x14 cm', 250, 'b30.jpg'),
+(6, 'Pápateszéri Bakonytherm Kettősméretű-soklyukú falazóblokk ', 'Súly: 3,7 kg/db \r\nKiszerelés: 252 db/raklap', 4, '25x12x14 cm', 135, 'papa.jpg'),
+(7, 'Zalakerámia Marmit falicsempe', 'Megnevezés: falicsempe\r\n\r\nSzíne: bézs\r\n\r\nFelülete: fényes\r\n\r\nAlkalmazható: beltér\r\n\r\nDobozolás: \r\n-30 db/doboz\r\n-1,5 m2/doboz\r\n-17,3 kg/doboz', 2, '20x25 cm', 2700, 'marmitcsempe.jpg'),
+(8, 'Cersanit Indira dekorcsempe', 'Kiszerelés:\r\n1,08m2/cs ', 2, '20x60 cm', 4320, 'cersanit.jpg'),
+(9, 'Lépcsőlap KRONOS GRES, matt,\r\nfagyálló, kültéri, K300\r\n', 'Szín és mintázat: bézs,gránitőrleményes mintával\r\n\r\nTulajdonságok:\r\n- kültéri \r\n- matt \r\n- fagyálló \r\n \r\nKiszerelés:\r\n1,62m2/csomag\r\n5680ft/m2', 2, '30x30x0,7 cm', 5860, 'kronos.jpg'),
+(10, 'C16/20-X0v(H)-24-F2 mixer beton', 'Tulajdonságok: \r\n\r\nNincs korróziós vagy kimaródási kockázat.\r\nA korróziónak vagy rozsdásodásnak nincs kockázata.\r\nKáros környezeti hatás nem éri a szilárdsági szempontból alárendelt betont.\r\nKáros környezeti hatás nem éri a betont. Karbonátosodáson kívül egyéb káros környezeti hatás nem éri a vasalt betont. ', 3, 'Adott rendelt mennyiség', 24000, 'noimage.jpg'),
+(11, 'C20/25-XC1-24-F2 mixer beton', 'Tulajdonságok:\r\n\r\nKarbonátosodás okozta korrózió.\r\n\r\nSzáraz vagy tartósan nedves.\r\nNedves, ritkán száraz.\r\nMérséklten nedves.\r\nVáltakozva nedves és száraz.', 3, 'Adott rendelt mennyiség', 25000, 'noimage.jpg'),
+(12, 'C30/37-XC2-24-F2 mixer beton', 'Tulajdonságok:\r\n\r\nKarbonátosodás okozta korrózió.\r\n\r\nSzáraz vagy tartósan nedves.\r\nNedves, ritkán száraz.\r\nMérséklten nedves.\r\nVáltakozva nedves és száraz.', 3, 'Adott rendelt mennyiség', 27000, 'noimage.jpg'),
+(26, 'Csempe', 'leírása', 2, '20x30x40 cm', 80000, 'papa.jpg'),
+(30, '1435', '135', 2, '65', 63, 'noimage.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `items`
+-- Tábla szerkezet ehhez a táblához `anyag_fajtak`
 --
 
-CREATE TABLE `items` (
-  `id` int(11) NOT NULL,
-  `item_nev` text COLLATE utf8_hungarian_ci NOT NULL,
-  `ar` int(11) NOT NULL,
-  `leiras` text COLLATE utf8_hungarian_ci NOT NULL,
-  `tipus_id` int(11) NOT NULL,
-  `kep` varchar(255) COLLATE utf8_hungarian_ci NOT NULL
+CREATE TABLE `anyag_fajtak` (
+  `anyag_fajta_id` int(11) NOT NULL,
+  `anyag_fajtaja` text COLLATE utf8_hungarian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `items`
+-- A tábla adatainak kiíratása `anyag_fajtak`
 --
 
-INSERT INTO `items` (`id`, `item_nev`, `ar`, `leiras`, `tipus_id`, `kep`) VALUES
-(1, 'Tengeri Alabárd', 2050, '80 fizikai támadóerő\r\n25% támadási sebesség\r\nPasszív: Életregeneráció/Pajzs csökkentés támadás esetén a célpontnak 50%-al 3mp-re', 1, 'tengeri_alabard.jpg'),
-(2, 'Rose Gold Meteor', 2120, '60 fizikai támadóerő\r\n30 mágia ellenállás\r\n5% fizikai életlopás\r\nPasszív: A hős életereje ha 30% alá csökken pajzsot generál, mely 510-1350 sebzést nyel el(szinttel növekszik). Növeli a mágikus ellenállást 25-el. A pajzs 3mp-ig érvényes, újratöltési ideje 40mp.', 1, 'rose_gold.jpg'),
-(3, 'Vérszomj fejsze', 1970, '70 fizikai támadóerő\r\n10% újratöltés csökkentés\r\nPasszív: 20% képességek általi életlopás', 1, 'verszomj.jpg'),
-(4, 'Végtelen harc', 2470, '65 fizikai támadóerő\r\n5 mana regeneráció\r\n250 életerő\r\n10% újratöltés csökkentés\r\n10% fizikai életlopás\r\n5% mozgási sebesség\r\nPasszív: Minden alaptámadás igaz sebzést okoz az ellenfélnek a használt képességek után 3mp-en belül. A sebzés értéke a fizikai támadóerő 60%-a. Az aktiválódás során a mozgási sebesség 10%-al. Újratöltési ideje 1.5mp.', 1, 'vegtelen.jpg'),
-(5, 'Kétségbeesés pengéje', 3010, '160 fizikai támadóerő\r\n5% mozgási sebesség\r\nPasszív: Ha az ellenfél életereje 50% alá esik a fizikai támadóerő megnövekszik 25%-al 2mp-ig.', 1, 'ketsegbeeses.jpg'),
-(6, 'Berserker dühe', 2250, '65 fizikai támadóerő\r\n25% kritikus találati esély\r\nPasszív:40% kritikus sebzés. A kritikus találatok növelik a fizikai támadóerőt 5%-al 2mp-re', 1, 'berserker.jpg'),
-(7, 'Szent kristály', 2180, '100 varázserő\r\nPasszív: Növeli a mágikus erőt 21-35%-al szinttel arányosan', 2, 'szentkristaly.jpg'),
-(8, 'Mennyei toll', 2030, '55 varázserő\r\n30% támadási sebesség\r\n5% újratöltés csökkentés\r\nPasszív: Az alaptámadások plusz mágikus sebzést okoznak 50+30% mágikus erő formájában', 2, 'mennyeitoll.jpg'),
-(9, 'Kitartás nyaklánca', 2010, '60 varázserő\r\n5% újratöltés csökkentés\r\n10% képességek általi életlopás\r\nPasszív: Életregeneráció és pajzs csökkent az ellenfélnek 50%-al 3mp-ig', 2, 'kitartasnyaklanca.jpg'),
-(10, 'Mennyei pallos', 1970, '65 varázserő\r\nPasszív: 35% mágia átütés', 2, 'pallos.jpg'),
-(11, 'Véres szárnyak', 3000, '150 varázserő\r\n500 életerő\r\nPasszív: Pajzsot generál 200% varázserővel egyenértékben. 30mp után ha elfogyott újra generálódik', 2, 'veresszarny.jpg'),
-(12, 'Jövendölő palást', 2060, '850 életerő\r\n42 mágia ellenállás\r\n10% újratöltés csökkentés\r\nPasszív: Növeli a pajzsok elnyelési képességét és az életregenerációt 30%-al', 3, 'jovendoles.jpg'),
-(13, 'Penge páncél', 1660, '90 fizikai ellenállás\r\nPasszív: A kapott alaptámadások 25%-át visszasebzi az ellenfélnek és 1mp-re lassítja őt 15%-al', 3, 'penge.jpg'),
-(14, 'Antik mellvért', 2170, '920 életerő\r\n54 fizikai ellenállás\r\n4 életregeneráció\r\nPasszív: Ha egy ellenség képessége megsebzi akkor a támadóerejét csökkenti 8%-al 2mp-re. 3x halmozható.', 3, 'antik.jpg'),
-(15, 'Királynő szárnyai', 2250, '25 fizikai támadóerő\r\n900 életerő\r\n10% újratöltés csökkentés\r\nPasszív: Ha az életerő 40% alá esik a kapott sebzés 20%-al csökken és növeli a képességek általi életlopást 25%-al 5mp-re. Újratöltési ideje 1 perc', 3, 'kiralyno.jpg'),
-(16, 'Elátkozott sisak', 1760, '1200 életerő\r\n25 mágia ellenállás\r\nPasszív: 1.5% mágikus sebzést okoz mpnként a közeli ellenfeleknek max életerejüktől függően. 50% plusz sebzést okoz minionoknak.', 3, 'elatkozott.jpg'),
-(17, 'Fürgeség csizmája', 850, '80 mozgási sebesség\r\nPasszív: Sebzést vagy kiosztott sebzést követően 40 ponttal csökken a mozgási sebesség 5mp-re.', 4, 'furgeseg.jpg'),
-(18, 'Gyorsaság csizmája', 710, '40 mozgási sebesség\r\n15% támadási sebesség', 4, 'gyorsasag.jpg'),
-(19, 'Újratöltés csizmája', 710, '40 mozgási sebesség\r\n10% újratöltés csökkentés', 4, 'ujratoltes.jpg'),
-(20, 'Arkán csizma', 690, '40 mozgási sebesség\r\n10 mágia átütés', 4, 'arkan.jpg'),
-(21, 'Ellenállás csizmája', 700, '40 mozgási sebesség\r\n22 mágia ellenállás\r\nPasszív: A kontrolláló képességek hatása csökken 30%-al', 4, 'ellenallas.jpg'),
-(22, 'Tűz büntetés', 0, 'Cipővel és büntetéssel együtt alkalmazható!\r\nSzörnyeknek, minionoknak 150% sebzés. Ellenfeleken is alkalmazható 100 igaz sebzést okozva és 52-80 fizikai támadóerőt csökkent számára 5mp-ig.', 5, 'tuz.jpg'),
-(23, 'Jég büntetés', 0, 'Cipővel és büntetéssel együtt alkalmazható!\r\nSzörnyeknek, minionoknak 150% sebzés. Ellenfeleken is alkalmazható 100 igaz sebzést okozva és 72-100 mozgási sebességet csökkent számára 5mp-ig.', 5, 'jeg.jpg'),
-(24, 'Véres büntetés', 0, 'Cipővel és büntetéssel együtt alkalmazható!\r\nSzörnyeknek, minionoknak 150% sebzés. Ellenfeleken is alkalmazható 100 igaz sebzést okozva és életerőt csökkent 12.5% értékben az üldöző életerejétől függően 5mp-ig.', 5, 'veres.jpg'),
-(25, 'Láthatatlanság', 0, 'A saját magad és szövetségesek láthatatlanokká válhattok az ellenfél számára 5mp-ig (növelve a mozgási sebességet 30-75%-al a kapott aranytól függően) vagy míg sebzést nem adsz vagy kapsz.\r\nMegvétel után nem kapsz tapasztalatot és aranyat a szörnyekből és minionokból! (600 arany kigyűjtése után aktiválható tetszőleges időkben és 1500 aranyig halmozható)', 6, 'lathatatlan.jpg'),
-(26, 'Bátorság', 0, 'A közeli csapattársak fizikai és mágikus erejét növeli 12-30 ponttal (a kapott aranytól függően) és a mozgási valamint támadási sebességet 15%-al.\r\nMegvétel után nem kapsz tapasztalatot és aranyat a szörnyekből és minionokból! (600 arany kigyűjtése után aktív és 1500 aranyig halmozható)', 6, 'batorsag.jpg'),
-(27, 'Szívesség', 0, 'Minden 10mp után a regeneráló képességekből plusz 300-750 (a kapott aranytól függően) életerőt tölt vissza a legkisebb életerővel rendelkező csapattársnak.\r\nMegvétel után nem kapsz tapasztalatot és aranyat a szörnyekből és minionokból! (600 arany kigyűjtése után aktív és 1500 aranyig halmozható)', 6, 'szivesseg.jpg'),
-(28, 'Fagyos csapás', 0, 'Minden 30mp után csökkenti az ellenfél teljes életerejét 35%-al és extra sebzést oszt ki 7-18%-a az ellenfél maximum életerejének megfelelően (a kapott aranytól függően)\r\nMegvétel után nem kapsz tapasztalatot és aranyat a szörnyekből és minionokból! (600 arany kigyűjtése után aktív és 1500 aranyig halmozható)', 6, 'fagy.jpg');
+INSERT INTO `anyag_fajtak` (`anyag_fajta_id`, `anyag_fajtaja`) VALUES
+(1, 'Fa'),
+(2, 'Csempe'),
+(3, 'Mixer beton'),
+(4, 'Tégla');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `items_type`
+-- Tábla szerkezet ehhez a táblához `rendeles`
 --
 
-CREATE TABLE `items_type` (
-  `id` int(11) NOT NULL,
-  `item_fajta` text COLLATE utf8_hungarian_ci NOT NULL
+CREATE TABLE `rendeles` (
+  `rendeles_id` int(11) NOT NULL,
+  `rendelo_neve` text COLLATE utf8_hungarian_ci NOT NULL,
+  `rendelt_termek_fajtaja` int(11) NOT NULL,
+  `rendelt_termek_neve` text COLLATE utf8_hungarian_ci NOT NULL,
+  `rendeles_mennyisege` int(11) NOT NULL,
+  `allapot` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `items_type`
+-- A tábla adatainak kiíratása `rendeles`
 --
 
-INSERT INTO `items_type` (`id`, `item_fajta`) VALUES
-(1, 'Támadás'),
-(2, 'Mágikus'),
-(3, 'Védelem'),
-(4, 'Mozgás'),
-(5, 'Dzsungel'),
-(6, 'Roam');
+INSERT INTO `rendeles` (`rendeles_id`, `rendelo_neve`, `rendelt_termek_fajtaja`, `rendelt_termek_neve`, `rendeles_mennyisege`, `allapot`) VALUES
+(1, 'Sprint Elek', 1, 'Deszka', 15, 1),
+(2, 'Igen Nem', 1, 'Léc', 25, 2),
+(3, 'Matuka', 4, 'Tégla', 206, 0),
+(14, 'Isten', 2, 'Cersanit Indira dekorcsempe', 20, 0),
+(15, 'Istenes Bence', 1, 'Deszka', 20, 0);
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `laning`
+-- Tábla szerkezet ehhez a táblához `roles`
 --
 
-CREATE TABLE `laning` (
+CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
-  `role` text COLLATE utf8_hungarian_ci NOT NULL
+  `name` varchar(255) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `laning`
+-- A tábla adatainak kiíratása `roles`
 --
 
-INSERT INTO `laning` (`id`, `role`) VALUES
-(1, 'Tank'),
-(2, 'Fighter'),
-(3, 'Assassin'),
-(4, 'Mage'),
-(5, 'Marksman'),
-(6, 'Support');
+INSERT INTO `roles` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
+(1, 'user', '2020-08-02 14:57:31', '2020-08-02 14:57:31'),
+(2, 'moderator', '2020-08-02 14:57:31', '2020-08-02 14:57:31'),
+(3, 'admin', '2020-08-02 14:57:31', '2020-08-02 14:57:31');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `createdAt`, `updatedAt`) VALUES
+(1, 'user', 'user', '$2a$08$gXM4pyuhZFlC72PeAwxrUOR0uA31/d2PdgnHP35JGV.0bQNiZBatS', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 'mod', 'mod', '$2a$08$gXM4pyuhZFlC72PeAwxrUOR0uA31/d2PdgnHP35JGV.0bQNiZBatS', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 'admin', 'admin', '$2a$08$97Ze1/hXfOX44WdC62Rq8uRkog9HYC1HukRX8eld2ZEKPyenM5v.G', '2020-08-02 15:03:59', '2020-08-02 15:03:59');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `user_roles`
+--
+
+CREATE TABLE `user_roles` (
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `roleId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `user_roles`
+--
+
+INSERT INTO `user_roles` (`createdAt`, `updatedAt`, `roleId`, `userId`) VALUES
+('0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, 1),
+('2020-08-02 15:04:00', '2020-08-02 15:04:00', 1, 3),
+('0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 2),
+('0000-00-00 00:00:00', '0000-00-00 00:00:00', 2, 3),
+('2020-08-02 15:04:00', '2020-08-02 15:04:00', 3, 3);
 
 --
 -- Indexek a kiírt táblákhoz
 --
 
 --
--- A tábla indexei `heros`
+-- A tábla indexei `anyag`
 --
-ALTER TABLE `heros`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `hos_id` (`hos_id`);
+ALTER TABLE `anyag`
+  ADD PRIMARY KEY (`anyag_id`),
+  ADD KEY `anyag_fajtaja` (`anyag_fajtaja`);
 
 --
--- A tábla indexei `items`
+-- A tábla indexei `anyag_fajtak`
 --
-ALTER TABLE `items`
+ALTER TABLE `anyag_fajtak`
+  ADD PRIMARY KEY (`anyag_fajta_id`);
+
+--
+-- A tábla indexei `rendeles`
+--
+ALTER TABLE `rendeles`
+  ADD PRIMARY KEY (`rendeles_id`),
+  ADD KEY `rendelt_termek_fajtaja` (`rendelt_termek_fajtaja`);
+
+--
+-- A tábla indexei `roles`
+--
+ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `items_type`
+-- A tábla indexei `users`
 --
-ALTER TABLE `items_type`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `laning`
+-- A tábla indexei `user_roles`
 --
-ALTER TABLE `laning`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `user_roles`
+  ADD PRIMARY KEY (`roleId`,`userId`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- A kiírt táblák AUTO_INCREMENT értéke
 --
 
 --
--- AUTO_INCREMENT a táblához `heros`
+-- AUTO_INCREMENT a táblához `anyag`
 --
-ALTER TABLE `heros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+ALTER TABLE `anyag`
+  MODIFY `anyag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT a táblához `items`
+-- AUTO_INCREMENT a táblához `anyag_fajtak`
 --
-ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+ALTER TABLE `anyag_fajtak`
+  MODIFY `anyag_fajta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT a táblához `items_type`
+-- AUTO_INCREMENT a táblához `rendeles`
 --
-ALTER TABLE `items_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `rendeles`
+  MODIFY `rendeles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT a táblához `laning`
+-- AUTO_INCREMENT a táblához `users`
 --
-ALTER TABLE `laning`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- Megkötések a kiírt táblákhoz
+--
+
+--
+-- Megkötések a táblához `anyag_fajtak`
+--
+ALTER TABLE `anyag_fajtak`
+  ADD CONSTRAINT `anyag_fajtak_ibfk_1` FOREIGN KEY (`anyag_fajta_id`) REFERENCES `anyag` (`anyag_fajtaja`);
+
+--
+-- Megkötések a táblához `rendeles`
+--
+ALTER TABLE `rendeles`
+  ADD CONSTRAINT `rendeles_ibfk_1` FOREIGN KEY (`rendelt_termek_fajtaja`) REFERENCES `anyag_fajtak` (`anyag_fajta_id`);
+
+--
+-- Megkötések a táblához `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY (`roleId`) REFERENCES `roles` (`id`),
+  ADD CONSTRAINT `user_roles_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

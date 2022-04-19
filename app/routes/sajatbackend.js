@@ -150,8 +150,8 @@ module.exports = function(app) {
     connection.query('UPDATE rendeles SET allapot= 1 WHERE rendeles_id='+req.body.bev1, function (err, rows, fields) {
       if (err) throw err
     
-      console.log("Az adat törölve lett!")
-      res.send("Az adat törölve lett!")
+      console.log("A rendelés feldolgozás alatt!")
+      res.send("A rendelés feldolgozás alatt!")
     })
     
     connection.end()
@@ -175,8 +175,8 @@ module.exports = function(app) {
     connection.query('UPDATE rendeles SET allapot= 2 WHERE rendeles_id='+req.body.bev1, function (err, rows, fields) {
       if (err) throw err
     
-      console.log("Az adat törölve lett!")
-      res.send("Az adat törölve lett!")
+      console.log("A rendelés teljesítve!")
+      res.send("A rendelés teljesítve!")
     })
     
     connection.end()
